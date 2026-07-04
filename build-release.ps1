@@ -31,9 +31,24 @@ $env:MKDN_RELEASE_STORE_PASSWORD = $StorePassword
 $env:MKDN_RELEASE_KEY_ALIAS = $KeyAlias
 $env:MKDN_RELEASE_KEY_PASSWORD = $KeyPassword
 
-# === Java 环境（主人原工作流） ===
-$env:JAVA_HOME = 'E:\AI\Android studio\jbr'
-$env:Path = 'E:\AI\Android studio\jbr\bin;' + $env:Path
+# === Java 环境 ===
+# 自动检测 JDK（按常见安装路径）
+$jdkPaths = @(
+    'E:\AI\Android studio\jbr',                                # Android Studio 自带
+    'C:\Program Files\Android Studio\jbr',
+    'C:\Program Files\Java\jdk-21',
+    'C:\Program Files\Eclipse Adoptium\jdk-21*'
+)
+$detectedJdk = $null
+foreach ($p in $jdkPaths) {
+    if (Test-Path $p) { $detectedJdk = $p; break }
+}
+if ($detectedJdk) {
+    $env:JAVA_HOME = $detectedJdk
+    $env:Path = "$detectedJdk\bin;" + $env:Path
+} elseif (-not $env:JAVA_HOME) {
+    Write-Host '⚠️ 未找到 JDK，请设置 $env:JAVA_HOME 指向 JDK 17+' -ForegroundColor Yellow
+}
 
 # === 进入项目根 ===
 Set-Location $PSScriptRoot
