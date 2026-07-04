@@ -147,9 +147,9 @@ export MKDN_RELEASE_KEY_PASSWORD=xxx
 
 ## 👤 作者
 
-**luody2005**
+**lo9527**
 
-📧 联系方式：见 GitHub profile（https://github.com/luody2005）
+📧 联系方式：见 GitHub profile（https://github.com/lo9527）
 
 ## 🔗 相关项目
 
