@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">mkdn</string>
+    <string name="recent_files">最近文件</string>
+    <string name="all_files">全部文件</string>
+    <string name="open_file">打开文件</string>
+    <string name="settings">设置</string>
+    <string name="highlights">我的高亮</string>
+    <string name="font_size">字号</string>
+    <string name="theme">主题</string>
+    <string name="editor">编辑</string>
+    <string name="reader">阅读</string>
+    <string name="save">保存</string>
+    <string name="cancel">取消</string>
+    <string name="delete">删除</string>
+    <string name="highlight_text">标重点</string>
+    <string name="remove_highlight">取消高亮</string>
+    <string name="empty_recent">还没有打开过文件\n点击右上角打开 .md 或 .txt 文件试试</string>
+    <string name="empty_highlights">还没有高亮的段落\n阅读时选中文字即可标重点</string>
+    <string name="toc">目录</string>
+    <string name="search">搜索</string>
+    <string name="back">返回</string>
+    <string name="more">更多</string>
+    <string name="theme_light">浅色</string>
+    <string name="theme_dark">深色</string>
+    <string name="theme_sepia">护眼（米黄）</string>
+</resources>

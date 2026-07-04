@@ -1,0 +1,36 @@
+# Gradle
+.gradle/
+build/
+app/build/
+
+# Android Studio
+*.iml
+.idea/
+captures/
+.externalNativeBuild/
+.cxx/
+local.properties
+
+# 系统
+.DS_Store
+Thumbs.db
+
+# ★ 签名密钥（绝对不能进仓）—— 主人在 E:\memory\零\mkdn-release.jks 备份
+*.jks
+*.keystore
+*.p12
+*.pfx
+
+# ★ 构建产物 APK（18 个，~190MB，主人本地 dist/ 保留归档）
+dist/
+*.apk
+
+# ★ 零的私有笔记（含调试 log / 凭证台账引用，不进公开仓）
+LOG.md
+PROJECT_MEMORY.md
+
+# 临时 / 缓存
+*.hprof
+*.log
+.gradle/
+.kotlin/
