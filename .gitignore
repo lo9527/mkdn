@@ -15,17 +15,19 @@ local.properties
 .DS_Store
 Thumbs.db
 
-# ★ 签名密钥（绝对不能进仓）—— 主人在 E:\memory\零\mkdn-release.jks 备份
+# ★ 签名密钥 + 密码（绝对不能进仓）
 *.jks
 *.keystore
 *.p12
 *.pfx
+# gradle.properties 包含 release 签名密码（每个人本地配，参考 gradle.properties.example）
+gradle.properties
 
-# ★ 构建产物 APK（18 个，~190MB，主人本地 dist/ 保留归档）
+# ★ 构建产物 APK
 dist/
 *.apk
 
-# ★ 零的私有笔记（含调试 log / 凭证台账引用，不进公开仓）
+# ★ 零的私有笔记（含调试 log / 凭证台账引用）
 LOG.md
 PROJECT_MEMORY.md
 

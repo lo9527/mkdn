@@ -1,0 +1,37 @@
+# gradle.properties.example — 模板文件（可入仓）
+#
+# 实际 gradle.properties 已在 .gitignore 中排除（每个开发者本地配）
+# Clone 后:
+#   1. cp gradle.properties.example gradle.properties
+#   2. 填入你自己的 release 签名信息
+#   3. 把 mkdn-release.jks（或你自己的 jks）放到项目根目录
+#   4. .\gradlew.bat assembleRelease
+
+# ========== Gradle JVM 配置 ==========
+org.gradle.jvmargs=-Xmx2048m -Dfile.encoding=UTF-8
+android.useAndroidX=true
+kotlin.code.style=official
+android.nonTransitiveRClass=true
+
+# ========== AndroidX 镜像（国内网络环境必配） ==========
+# 如不需要可删除
+# systemProp.https.proxyHost=
+# systemProp.https.proxyPort=
+
+# ========== Release 签名配置（必填，否则 release build 失败） ==========
+# 密钥库文件路径（相对项目根目录）
+RELEASE_STORE_FILE=your-release.jks
+
+# 密钥库密码
+RELEASE_STORE_PASSWORD=your-store-password
+
+# 密钥别名
+RELEASE_KEY_ALIAS=your-key-alias
+
+# 密钥密码
+RELEASE_KEY_PASSWORD=your-key-password
+
+# ========== 安全提示 ==========
+# 1. 永远不要把真实密码提交到 git
+# 2. 建议使用 keytool 单独生成签名密钥
+# 3. CI 环境推荐用环境变量（MKDN_RELEASE_STORE_PASSWORD 等）覆盖

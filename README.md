@@ -75,16 +75,63 @@ mkdn/
 - Gradle 8.7+（用项目自带的 `gradlew` 即可）
 
 ### 构建命令
+
+#### 方式 A：Debug 版（不需要签名）
 ```bash
 # Windows PowerShell
-$env:JAVA_HOME = 'E:\AI\Android studio\jbr'
-$env:Path = 'E:\AI\Android studio\jbr\bin;' + $env:Path
-cd E:\project\mkdn
-.\gradlew.bat assembleRelease
+$env:JAVA_HOME = '<path-to-your-jdk-17+>'
+$env:Path = "$env:JAVA_HOME\bin;" + $env:Path
+cd <项目根目录>
+.\gradlew.bat assembleDebug
+```
+
+#### 方式 B：Release 版（需要签名密钥）
+签名密钥**不**包含在仓库中（参见 [签名配置](#-签名配置)）。
+
+```powershell
+# 通过命令行参数传密码（推荐）
+.\build-release.ps1 -StorePassword 'your-password' -KeyPassword 'your-password'
+
+# 或通过环境变量
+$env:MKDN_RELEASE_STORE_PASSWORD = 'your-password'
+$env:MKDN_RELEASE_KEY_PASSWORD = 'your-password'
+.\build-release.ps1
 ```
 
 ### 输出
 APK 在 `app/build/outputs/apk/release/app-release.apk`
+
+### 🔐 签名配置
+
+**签名密钥（`*.jks`）和密码都必须在仓库之外管理**，否则开源后会泄露。
+
+#### 首次使用
+1. **生成自己的签名密钥**（或用现有的）：
+   ```bash
+   keytool -genkey -v -keystore my-release.jks -keyalg RSA -keysize 2048 -validity 10000 -alias my-key-alias
+   ```
+2. **复制配置模板**：
+   ```bash
+   cp gradle.properties.example gradle.properties
+   ```
+3. **填入真实值**（在 `gradle.properties` 中）：
+   ```properties
+   RELEASE_STORE_FILE=my-release.jks
+   RELEASE_STORE_PASSWORD=your-store-password
+   RELEASE_KEY_ALIAS=my-key-alias
+   RELEASE_KEY_PASSWORD=your-key-password
+   ```
+4. **把 jks 文件放到项目根**（或在 `RELEASE_STORE_FILE` 写绝对路径）
+
+`gradle.properties` 已在 `.gitignore` 中排除，**不会被提交到仓库**。
+
+#### CI 环境
+推荐用环境变量（避免密码出现在任何文件）：
+```bash
+export MKDN_RELEASE_STORE_PASSWORD=xxx
+export MKDN_RELEASE_KEY_PASSWORD=xxx
+./gradlew assembleRelease
+```
 
 ## 📝 文档
 
@@ -100,7 +147,9 @@ APK 在 `app/build/outputs/apk/release/app-release.apk`
 
 ## 👤 作者
 
-**luody2005** — <lo9527@users.noreply.github.com>
+**luody2005**
+
+📧 联系方式：见 GitHub profile（https://github.com/luody2005）
 
 ## 🔗 相关项目
 
