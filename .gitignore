@@ -23,9 +23,9 @@ Thumbs.db
 # gradle.properties 包含 release 签名密码（每个人本地配，参考 gradle.properties.example）
 gradle.properties
 
-# ★ 构建产物 APK
-dist/
-*.apk
+# ★ 构建产物 APK（默认不入仓；如需在 README 提供下载，可手动 git add 指定文件）
+# dist/
+# *.apk
 
 # ★ 零的私有笔记（含调试 log / 凭证台账引用）
 LOG.md
